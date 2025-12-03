@@ -1,0 +1,28 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-9">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-0 pb-0">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <p class="text-uppercase text-muted small mb-1">Онлайн чат</p>
+              <h1 class="h4 mb-0">Добро пожаловать, <span class="text-primary"><%= session[:username] %></span></h1>
+            </div>
+            <span class="badge text-bg-primary">Real-time</span>
+          </div>
+        </div>
+
+        <div class="card-body pt-3 pb-0" data-controller="autoscroll">
+          <%= turbo_stream_from "messages" %>
+          <div id="messages" class="d-flex flex-column gap-3 chat-window" data-autoscroll-target="container">
+            <%= render @messages %>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white border-0" id="message_form">
+          <%= render "form", message: @message %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
