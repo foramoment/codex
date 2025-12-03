@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "message_form" do %>
+  <%= render "form", message: Message.new(username: session[:username]) %>
+<% end %>
