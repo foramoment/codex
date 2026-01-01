@@ -1,7 +1,7 @@
-<%= form_with model: message, url: messages_path, class: "space-y-5" do |form| %>
+<%= form_with model: message, url: messages_path, class: "space-y-5", data: { controller: "message-form" } do |form| %>
   <div>
     <%= form.label :content, "Сообщение", class: "text-sm font-semibold text-slate-700" %>
-    <%= form.text_area :content, rows: 4, class: "mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-700 shadow-sm transition focus:border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-100", placeholder: "Напишите что-нибудь доброжелательное" %>
+    <%= form.text_area :content, rows: 1, class: "mt-2 w-full resize-none rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-700 shadow-sm transition focus:border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-100", placeholder: "Напишите что-нибудь доброжелательное", data: { message_form_target: "input", action: "keydown->message-form#keydown" } %>
     <% if message.errors.any? %>
       <div class="mt-2 text-sm font-medium text-rose-600">
         <%= message.errors.full_messages.to_sentence %>

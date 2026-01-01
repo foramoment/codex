@@ -1,3 +1,5 @@
 <%= turbo_stream.replace "message_form" do %>
-  <%= render "form", message: Message.new(username: session[:username]) %>
+  <div class="border-t border-slate-100 bg-white/80 px-6 py-6 sm:px-8" id="message_form">
+    <%= render "form", message: Message.new(username: session[:username]) %>
+  </div>
 <% end %>
