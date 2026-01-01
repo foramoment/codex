@@ -1,19 +1,19 @@
-<%= form_with model: message, url: messages_path, class: "row g-3 align-items-end" do |form| %>
-  <div class="col-12">
-    <%= form.label :content, "Сообщение", class: "form-label fw-semibold" %>
-    <%= form.text_area :content, rows: 3, class: "form-control", placeholder: "Напишите что-нибудь доброжелательное" %>
+<%= form_with model: message, url: messages_path, class: "space-y-5", data: { controller: "message-form" } do |form| %>
+  <div>
+    <%= form.label :content, "Сообщение", class: "text-sm font-semibold text-slate-700" %>
+    <%= form.text_area :content, rows: 1, class: "mt-2 w-full resize-none rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-700 shadow-sm transition focus:border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-100", placeholder: "Напишите что-нибудь доброжелательное", data: { message_form_target: "input", action: "keydown->message-form#keydown" } %>
     <% if message.errors.any? %>
-      <div class="text-danger small mt-2">
+      <div class="mt-2 text-sm font-medium text-rose-600">
         <%= message.errors.full_messages.to_sentence %>
       </div>
     <% end %>
   </div>
 
-  <div class="col-md-6 col-12">
-    <div class="form-text">Вы общаетесь как <span class="fw-semibold"><%= session[:username] %></span></div>
-  </div>
-
-  <div class="col-md-6 col-12 text-md-end">
-    <%= form.submit "Отправить", class: "btn btn-primary px-4" %>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="text-sm text-slate-500">
+      Вы общаетесь как
+      <span class="font-semibold text-slate-700"><%= session[:username] %></span>
+    </div>
+    <%= form.submit "Отправить", class: "inline-flex items-center justify-center rounded-full bg-sky-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-200 transition hover:-translate-y-0.5 hover:bg-sky-500 focus:outline-none focus:ring-4 focus:ring-sky-200" %>
   </div>
 <% end %>

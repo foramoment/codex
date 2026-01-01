@@ -15,18 +15,6 @@
  */
 
 body {
-  background: radial-gradient(circle at top left, #e0f2ff, #f8f9fb 40%);
-  color: #1b1f2a;
-}
-
-.chat-window {
-  max-height: 60vh;
-  overflow-y: auto;
-  padding-right: 0.25rem;
-}
-
-@media (max-width: 768px) {
-  .chat-window {
-    max-height: 50vh;
-  }
+  background: radial-gradient(circle at top left, #dbeafe, #f8fafc 45%, #ffffff 100%);
+  color: #0f172a;
 }

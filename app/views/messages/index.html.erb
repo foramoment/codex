@@ -1,28 +1,33 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-xl-8 col-lg-9">
-      <div class="card shadow-sm border-0">
-        <div class="card-header bg-white border-0 pb-0">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <p class="text-uppercase text-muted small mb-1">Онлайн чат</p>
-              <h1 class="h4 mb-0">Добро пожаловать, <span class="text-primary"><%= session[:username] %></span></h1>
-            </div>
-            <span class="badge text-bg-primary">Real-time</span>
-          </div>
-        </div>
-
-        <div class="card-body pt-3 pb-0" data-controller="autoscroll">
-          <%= turbo_stream_from "messages" %>
-          <div id="messages" class="d-flex flex-column gap-3 chat-window" data-autoscroll-target="container">
-            <%= render @messages %>
-          </div>
-        </div>
-
-        <div class="card-footer bg-white border-0" id="message_form">
-          <%= render "form", message: @message %>
-        </div>
+<section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+  <div class="overflow-hidden rounded-3xl border border-white/60 bg-white/70 shadow-xl backdrop-blur">
+    <div class="flex flex-wrap items-start justify-between gap-4 border-b border-slate-100 px-6 py-5 sm:px-8">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">Онлайн чат</p>
+        <h2 class="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
+          Добро пожаловать,
+          <span class="text-sky-600"><%= session[:username] %></span>
+        </h2>
+        <p class="mt-1 text-sm text-slate-500">Подключайтесь к беседе и оставайтесь на связи.</p>
+      </div>
+      <div class="flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+        Real-time
       </div>
     </div>
+
+    <div class="px-6 py-5 sm:px-8" data-controller="autoscroll">
+      <%= turbo_stream_from "messages" %>
+      <div
+        id="messages"
+        class="flex max-h-[60vh] flex-col gap-4 overflow-y-auto pr-2 sm:max-h-[55vh]"
+        data-autoscroll-target="container"
+      >
+        <%= render @messages %>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-100 bg-white/80 px-6 py-6 sm:px-8" id="message_form">
+      <%= render "form", message: @message %>
+    </div>
   </div>
-</div>
+</section>
